@@ -1,0 +1,1 @@
+1)  bipartite graph : each vertex should belong to the one of the two sets and vertices should connect to different set nodes
