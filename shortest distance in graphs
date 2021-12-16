@@ -1,0 +1,27 @@
+std::vector<int> ar[100001];int vis[100001]={0},dis[100001]={0};
+
+
+void dfs(int node,int distance)
+{
+  vis[node] = 1;
+  dis[node] = distance; 
+  for (int child : ar[node])
+    if(!vis[child])
+      dfs(child,distance+1);
+  
+}
+int n,m,a,b;
+void solve()
+{  int n,m,a,b;
+   cin>>n>>m;
+
+   for(int i=1;i<=m;i++)
+   cin>>a>>b,ar[a].pb(b),ar[b].pb(a);
+
+   dfs(1,0);
+
+   
+
+  
+
+}
