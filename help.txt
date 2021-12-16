@@ -1,1 +1,2 @@
 1)  bipartite graph : each vertex should belong to the one of the two sets and vertices should connect to different set nodes
+    odd cycled can't be bipartiti but even numbered cycle may or may not be bipartite
