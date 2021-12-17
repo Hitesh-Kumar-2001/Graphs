@@ -3,4 +3,6 @@
     
 2)  cycle detectaion in directed  https://youtu.be/XmCHHSiXARc
     cycle detectaion in undirected  https://youtu.be/eCG3T1m7rFY
+ 
+3)  in conected components we can calculate number of nodes via incrementing a size var in dfs calls in main function 
     
