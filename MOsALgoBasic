@@ -1,0 +1,117 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+#define debug(x) cout<<"{"<<(#x)<<":"<<(x)<<"}";
+#define ll long long
+#define dd double
+#define pl pair<ll,ll>
+#define pi pair<int,int>
+#define vl vector <pl>
+#define vi vector <pi> 
+#define all(v) v.begin(),v.end()           
+#define trav(a,x) for(auto& a : x)
+#define pb push_back
+#define mp make_pair
+#define endm "\n"
+#define sec second
+#define lb(v,a) lower_bound(v.begin(), v.end(), a)
+#define ub(v,a) upper_bound(v.begin(), v.end(), a);
+#define loop(I,intialise,N,INC) for(I=intialise;I<N&&I>N;I+=INC)
+#define sortd(v) sort(vr(v), greater<int>());
+#define forin(i,n) for(ll i=0;i<n;i++)
+#define take(x) int x;cin>>x;
+#define input(v) forin(i,v.size())cin>>v[i];
+ 
+////////////////////////////////////////////////////////////////////////////////////////////////templates
+template<typename T, typename U> static inline void amin(T &x, U y){ if(y < x) x = y; }
+template<typename T, typename U> static inline void amax(T &x, U y){ if(x < y) x = y; }
+ 
+ 
+////////////////////////////////////////////////////////////////////////////////////////////////constants            
+const int MOD = 1e9 + 7;
+ 
+ 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ascii value   0->48, a->97, A->65 write functions here
+ 
+ 
+/////////////////////////////////////////////////////////////////////////////////
+ 
+ // mo's algorithm sqaure root decomposition sasta segmentation tree
+
+vector<int> blocks;
+int blockSize;
+
+void make( vector<int> v ){
+
+   int blockLen = sqrt(v.size()) + 1;
+   blocks.resize(blockLen,0);
+   blockSize = v.size()/blockLen;
+
+   for(int i =0;i<v.size();i++){
+      blocks[i/blockSize]+=v[i];
+   }
+}
+
+void update(int i, int val, vector<int> &v){
+
+   blocks[ i/blockSize ] += ( val-v[i] );
+   v[i] = val;
+}
+
+int query( int l, int r, vector<int> v ){
+   int ans = 0;
+
+   while( l<=r ){
+      if( l%blockSize==0 && l+blockSize <= r ){
+         ans+=blocks[l/blockSize];
+         l+=blockSize;
+      }else ans+=v[l++];
+   }
+
+   return ans;
+}
+int query2( int l, int r, vector<int> v ){
+   int ans = 0;
+
+   for(int i =l;i<=r;i++){
+      ans+=v[i];
+   }
+
+   return ans;
+}
+
+void kurumi()
+{  
+   
+   int n;cin>>n;
+
+   vector<int> v(n);
+   input(v);
+   make(v);
+   // debug(n)
+   cout<<query2(0,n-1,v)<<"|"<<query2(1,n-1,v)<<"|"<<"|"<<query2(1,n-2,v)<<endl;
+   cout<<query(0,n-1,v)<<"|"<<query(1,n-1,v)<<"|"<<"|"<<query(1,n-2,v)<<endl;
+   update(5,0,v);
+   cout<<query2(0,n-1,v)<<"|"<<query2(1,n-1,v)<<"|"<<"|"<<query2(1,n-2,v)<<endl;
+   cout<<query(0,n-1,v)<<"|"<<query(1,n-1,v)<<"|"<<"|"<<query(1,n-2,v);
+
+   
+}
+ 
+//////////////////////////////////////////////////////////////////////////////////////
+   int main ()
+    {   
+       ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+       int zaphkeil=1,i;
+       // cin>>zaphkeil;
+        
+        for(i=0;i<zaphkeil;i++)
+         {
+           kurumi();
+         }
+              
+        return 0;
+    }
+ 
+/////////////////////////////////////////////////////////////////////////
